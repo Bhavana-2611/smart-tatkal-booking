@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Trains</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #00264d, #004080);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        .box {
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        input, select {
+            padding: 10px;
+            margin: 10px;
+            width: 250px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: yellow;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>🚆 Search Trains</h2>
+
+    <form action="/train_list" method="POST">
+        <input type="text" name="from" placeholder="From Station" required><br>
+        <input type="text" name="to" placeholder="To Station" required><br>
+        <input type="date" name="date" required><br>
+
+        <select name="class">
+            <option value="Sleeper">Sleeper</option>
+            <option value="3A">3A</option>
+            <option value="2A">2A</option>
+        </select><br>
+
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+</body>
+</html>

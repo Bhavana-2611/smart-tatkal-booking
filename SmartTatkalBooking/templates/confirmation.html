@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking Confirmation</title>
+    <style>
+        body {
+            background: #0f2027;
+            font-family: Arial;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .ticket {
+            background: #1c1c1c;
+            padding: 30px;
+            width: 60%;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px black;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid gray;
+            padding: 10px;
+        }
+
+        th {
+            background: #333;
+        }
+
+        h2 {
+            color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+
+<div class="ticket">
+
+    <h2>🎉 Booking Confirmed!</h2>
+
+    <h3>PNR Number: {{ pnr }}</h3>
+    <p>Coach: {{ coach }}</p>
+    <p>Class: {{ travel_class }}</p>
+
+    <h3>Passenger Details</h3>
+
+    <table>
+        <tr>
+            <th>Seat No</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+        </tr>
+
+        {% for p in passengers %}
+        <tr>
+            <td>{{ p.seat }}</td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.age }}</td>
+            <td>{{ p.gender }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Available Trains</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #001f3f, #003366);
+            font-family: Arial;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            padding-top: 50px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.1);
+            margin: 20px auto;
+            padding: 20px;
+            width: 60%;
+            border-radius: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: yellow;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🚆 Available Trains</h2>
+
+    <div class="card">
+        <h3>Smart Express 12345</h3>
+        <p>{{ from_station }} → {{ to_station }}</p>
+        <p>Date: {{ date }}</p>
+        <p>Class: {{ travel_class }}</p>
+        <br>
+        <form action="/compartments" method="GET">
+    <input type="hidden" name="class" value="{{ travel_class }}">
+    <button type="submit">Select Seats</button>
+</form>
+    </div>
+
+    <div class="card">
+        <h3>Fast Tatkal Special 54321</h3>
+        <p>{{ from_station }} → {{ to_station }}</p>
+        <p>Date: {{ date }}</p>
+        <p>Class: {{ travel_class }}</p>
+        <br>
+        <form action="/compartments" method="GET">
+    <input type="hidden" name="class" value="{{ travel_class }}">
+    <button type="submit">Select Seats</button>
+</form>
+    </div>
+</div>
+
+</body>
+</html>

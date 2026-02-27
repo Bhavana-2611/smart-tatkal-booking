@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Compartment</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #141e30, #243b55);
+            text-align: center;
+            font-family: Arial;
+            color: white;
+        }
+
+        .coach {
+            display: inline-block;
+            padding: 20px 30px;
+            margin: 15px;
+            background: lightgreen;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .coach:hover {
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Select Compartment ({{ travel_class }})</h2>
+
+{% for coach in coaches %}
+    <form action="/seats" method="GET" style="display:inline;">
+        <input type="hidden" name="coach" value="{{ coach }}">
+        <input type="hidden" name="class" value="{{ travel_class }}">
+        <button class="coach">{{ coach }}</button>
+    </form>
+{% endfor %}
+
+</body>
+</html>

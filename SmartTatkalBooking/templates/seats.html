@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Seat Selection</title>
+    <style>
+        body {
+            background: #0f2027;
+            color: white;
+            font-family: Arial;
+            text-align: center;
+        }
+
+        .row {
+            margin-bottom: 15px;
+        }
+
+        .seat {
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+            display: inline-block;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            line-height: 15px;
+            padding-top: 10px;
+        }
+
+        .available {
+            background: green;
+        }
+
+        .booked {
+            background: red;
+            cursor: not-allowed;
+        }
+
+        .selected {
+            background: blue !important;
+        }
+
+        .legend {
+            margin-top: 20px;
+        }
+
+        .box {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Coach {{ coach }} - {{ travel_class }}</h2>
+
+<form action="/passenger_details" method="POST">
+
+<input type="hidden" name="selected_seats" id="selected_seats">
+<input type="hidden" name="coach" value="{{ coach }}">
+<input type="hidden" name="class" value="{{ travel_class }}">
+
+<div>
+
+{% for seat in seats_data %}
+    
+    {% if loop.index0 % 8 == 0 %}
+        <div class="row">
+    {% endif %}
+
+    {% if seat.booked %}
+        <div class="seat booked">
+            {{ seat.number }}<br>{{ seat.berth }}
+        </div>
+    {% else %}
+        <div class="seat available"
+             onclick="selectSeat(this, {{ seat.number }})">
+            {{ seat.number }}<br>{{ seat.berth }}
+        </div>
+    {% endif %}
+
+    {% if loop.index0 % 8 == 7 %}
+        </div>
+    {% endif %}
+
+{% endfor %}
+
+</div>
+
+<br><br>
+<button type="submit">Continue</button>
+
+</form>
+
+<script>
+let selectedSeats = [];
+
+function selectSeat(element, seatNumber) {
+
+    if (!element.classList.contains("booked")) {
+
+        element.classList.toggle("selected");
+
+        if (selectedSeats.includes(seatNumber)) {
+            selectedSeats = selectedSeats.filter(s => s !== seatNumber);
+        } else {
+            selectedSeats.push(seatNumber);
+        }
+
+        document.getElementById("selected_seats").value =
+            selectedSeats.join(",");
+    }
+}
+</script>
+</body>
+</html>

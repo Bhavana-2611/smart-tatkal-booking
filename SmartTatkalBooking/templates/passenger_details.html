@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Passenger Details</title>
+    <style>
+        body {
+            background: #1c1c1c;
+            color: white;
+            font-family: Arial;
+            text-align: center;
+        }
+
+        input {
+            padding: 5px;
+            margin: 5px;
+        }
+
+        .box {
+            border: 1px solid gray;
+            padding: 15px;
+            margin: 10px auto;
+            width: 40%;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Enter Passenger Details</h2>
+<h3>Coach {{ coach }} - {{ travel_class }}</h3>
+
+<form action="/confirm_booking" method="POST">
+
+<input type="hidden" name="coach" value="{{ coach }}">
+<input type="hidden" name="class" value="{{ travel_class }}">
+
+{% for seat in seat_list %}
+
+<div class="box">
+    <h4>Seat {{ seat }}</h4>
+
+    <input type="hidden" name="seat_number" value="{{ seat }}">
+
+    Name: <input type="text" name="name_{{ seat }}" required><br>
+    Age: <input type="number" name="age_{{ seat }}" required><br>
+    Gender:
+    <select name="gender_{{ seat }}">
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+    </select>
+</div>
+
+{% endfor %}
+
+<br>
+<button type="submit">Confirm Booking</button>
+
+</form>
+
+</body>
+</html>
